@@ -37,8 +37,6 @@ public class AudioManager : MonoBehaviour
         {
            
             ToogleMusic(false);
-          
-
         }
 
         int soundState = PlayerPrefs.GetInt("Sound");
@@ -46,8 +44,9 @@ public class AudioManager : MonoBehaviour
         {
            
             ToogleSound(true);
-           
+
         }
+
         else
         {
          
@@ -68,22 +67,12 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     public void ToogleMusic(bool toogle)
     {
         if(toogle)
-          backgroundMusic.volume = 1.0f;
+          backgroundMusic.volume = 0.5f;
         else
             backgroundMusic.volume = 0.0f;
     }

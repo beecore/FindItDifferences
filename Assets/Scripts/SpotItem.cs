@@ -7,7 +7,7 @@ public class SpotItem : MonoBehaviour
     public bool isSpotted;
 
     public GameObject successIcon;
-
+    public Transform showSpot;
     [HideInInspector]
     public Transform spotPos;
 
@@ -21,7 +21,7 @@ public class SpotItem : MonoBehaviour
     public void SetSpotItem()
     {
         isSpotted = true;
-        Vector2 correctPos = new Vector2(spotPos.position.x + 50f, spotPos.position.y + 50f);
+        Vector2 correctPos = new Vector2(spotPos.position.x, spotPos.position.y);
         Instantiate(successIcon, correctPos, Quaternion.identity);
     }
 }

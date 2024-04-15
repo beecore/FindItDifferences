@@ -8,11 +8,11 @@ public class HomeManager : MonoBehaviour
 {
     public GameObject settingPanel;
 
-    public TextMeshProUGUI levelText;
+    //public TextMeshProUGUI levelText;
 
     void Start()
     {
-        levelText.text = "LEVEL " + (PlayerPrefs.GetInt("Level") + 1).ToString();
+       // levelText.text = "LEVEL " + (PlayerPrefs.GetInt("Level") + 1).ToString();
     }
 
 
@@ -32,5 +32,14 @@ public class HomeManager : MonoBehaviour
         AudioManager.instance.clickBtn.Play();
         settingPanel.SetActive(true);
     }
-
+    public void CloseSetting()
+    {
+        AudioManager.instance.clickBtn.Play();
+        settingPanel.SetActive(false);
+    }
+    public void OnClickRateUs()
+    {
+        AudioManager.instance.clickBtn.Play();
+        Application.OpenURL("market://details?id=" + Application.identifier);
+    }
 }

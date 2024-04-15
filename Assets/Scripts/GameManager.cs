@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -49,8 +47,9 @@ public class GameManager : MonoBehaviour
         instance = this;
         Application.targetFrameRate = 60;
     }
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Debug.Log("Bat dau");
         GameObject levelObj = null;
@@ -65,9 +64,8 @@ public class GameManager : MonoBehaviour
             }
             levelObj = Instantiate(Resources.Load("Levels/Level" + (currentLevelIndex + 1).ToString(), typeof(GameObject))) as GameObject;
         }
-        Debug.Log("Bat dau currentLevelIndex "+ currentLevelIndex);
 
-        if(levelObj != null)
+        if (levelObj != null)
         {
             gameLevel = levelObj.GetComponent<GameLevel>();
         }
@@ -77,24 +75,34 @@ public class GameManager : MonoBehaviour
         currentTimer = gameLevel.levelTimer;
         currentState = GAME_STATE.GAME_PLAYING;
         AdsControl.Instance.ShowBannerAd();
+        int isOpenHint = PlayerPrefs.GetInt("isOpenHint", 0);
+
+        if (currentLevelIndex == 0 && isOpenHint == 0)
+        {
+            hintObj.SetActive(true);
+            PlayerPrefs.SetInt("isOpenHint", 1);
+        }
+
+        if (currentLevelIndex == 0)
+        {
+            hintObj.transform.position = gameLevel.pairItemTrue.itemList[0].showSpot.position;
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (IsPointerOverUIObject())
             return;
 
-
         if (currentState != GAME_STATE.GAME_PLAYING)
             return;
 
-        if(currentTimer - Time.deltaTime >= 0)
+        if (currentTimer - Time.deltaTime >= 0)
         {
             currentTimer -= Time.deltaTime;
             mUIManager.mGamePanel.ShowTimer(currentTimer);
         }
-
         else
         {
             currentTimer = 0.0f;
@@ -102,9 +110,6 @@ public class GameManager : MonoBehaviour
             currentState = GAME_STATE.GAME_OVER;
             mUIManager.ShowGameOver();
         }
-
-
-
 
 #if !UNITY_EDITOR
 
@@ -114,7 +119,6 @@ public class GameManager : MonoBehaviour
 
             if(theTouch.phase == TouchPhase.Began)
             {
-
                 hintObj.SetActive(false);
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero, 1.0f, pairItemLayer);
                 Vector3 clickpos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
@@ -134,19 +138,14 @@ public class GameManager : MonoBehaviour
                             SetCorrectSpot(spotItem.spotIndex);
                             currentUnlockItem++;
                         }
-
                         else
                             SetIncorrectSpot(click2D);
                     }
-
                     else
                     {
-
                         SetIncorrectSpot(click2D);
                     }
-
                 }
-
             }
         }
 
@@ -163,7 +162,7 @@ public class GameManager : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag == "PairItem")
                 {
-                     Debug.Log("Hit: " + hit.collider.gameObject.name);
+                    Debug.Log("Hit: " + hit.collider.gameObject.name);
                     SpotItem spotItem = hit.collider.GetComponent<SpotItem>();
                     Debug.Log("Hit spotItem: " + spotItem);
                     if (!spotItem.isSpotted)
@@ -175,25 +174,19 @@ public class GameManager : MonoBehaviour
                         SetCorrectSpot(spotItem.spotIndex);
                         currentUnlockItem++;
                     }
-
                     else
                         SetIncorrectSpot(click2D);
                 }
-
                 else
                 {
-
                     SetIncorrectSpot(click2D);
                 }
-
             }
         }
 #endif
-
-
     }
 
-    void SetCorrectSpot(int spotIndex)
+    private void SetCorrectSpot(int spotIndex)
     {
         AudioManager.instance.correctBtn.Play();
         gameLevel.pairItemTrue.itemList[spotIndex - 1].SetSpotItem();
@@ -201,16 +194,15 @@ public class GameManager : MonoBehaviour
         passedItemBar.UnlockItem(currentUnlockItem);
 
         Debug.Log("Unloc : " + currentUnlockItem);
-        if(currentUnlockItem == gameLevel.pairItemTrue.itemList.Length - 1 && currentState != GAME_STATE.GAME_OVER)
+        if (currentUnlockItem == gameLevel.pairItemTrue.itemList.Length - 1 && currentState != GAME_STATE.GAME_OVER)
         {
             mUIManager.ShowGameWin();
             currentState = GAME_STATE.GAME_WIN;
             passedItemBar.GameWinEffect();
         }
-            
     }
 
-    void SetIncorrectSpot(Vector3 clickPos)
+    private void SetIncorrectSpot(Vector3 clickPos)
     {
         AudioManager.instance.failBtn.Play();
         if (currentTimer - 30 > 0)
@@ -226,15 +218,11 @@ public class GameManager : MonoBehaviour
             currentState = GAME_STATE.GAME_OVER;
             mUIManager.ShowGameOver();
         }
-        
     }
 
     public void ShowHint()
     {
         AdsControl.Instance.ShowRewardedAd(AdsControl.REWARD_TYPE.HINT);
-        
-       
-        
     }
 
     public void ShowHintRW()
@@ -243,7 +231,7 @@ public class GameManager : MonoBehaviour
         if (FindHintIndex() != -1)
         {
             hintObj.SetActive(true);
-            hintObj.transform.position = gameLevel.pairItemTrue.itemList[FindHintIndex()].spotPos.position + new Vector3(50f, 50f, 0f);
+            hintObj.transform.position = gameLevel.pairItemTrue.itemList[FindHintIndex()].showSpot.position;
         }
     }
 
@@ -251,7 +239,7 @@ public class GameManager : MonoBehaviour
     {
         int hintIndex = -1;
 
-        for(int i = 0; i < gameLevel.pairItemTrue.itemList.Length; i++)
+        for (int i = 0; i < gameLevel.pairItemTrue.itemList.Length; i++)
         {
             if (!gameLevel.pairItemTrue.itemList[i].isSpotted)
                 hintIndex = i;
@@ -266,7 +254,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
-
     public void Back()
     {
         AudioManager.instance.clickBtn.Play();
@@ -276,7 +263,6 @@ public class GameManager : MonoBehaviour
     public void ContinueGame()
     {
         AdsControl.Instance.ShowRewardedAd(AdsControl.REWARD_TYPE.MORE_TIME);
-       
     }
 
     public void ShowContinueRW()
@@ -284,7 +270,6 @@ public class GameManager : MonoBehaviour
         currentTimer = 60;
         currentState = GAME_STATE.GAME_PLAYING;
         mUIManager.HideGameOver();
-
     }
 
     public bool IsPointerOverUIObject()
@@ -302,6 +287,5 @@ public class GameManager : MonoBehaviour
         results.Clear();
         return _check;
         //return results.Count > 0;
-
     }
 }

@@ -2063,7 +2063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundColor: {r: 0, g: 0, b: 0, a: 0.6}
-  background: {fileID: 60817658}
+  BGPanel: {fileID: 60817658}
 --- !u!114 &679553291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4748,7 +4748,7 @@ MonoBehaviour:
     m_Bits: 64
   gameLevel: {fileID: 0}
   currentLevelIndex: 0
-  maxLevelTotal: 50
+  maxLevelTotal: 15
   missIconObject: {fileID: 6574585677673970451, guid: 12a7217c8994b44fc912feb98822185b, type: 3}
   correctIconObject: {fileID: 5662347474597723872, guid: 44164913eabd94ef6b162134bc004b78, type: 3}
   hintObj: {fileID: 1029787224}
@@ -10847,7 +10847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundColor: {r: 0, g: 0, b: 0, a: 0.6}
-  background: {fileID: 67647183}
+  BGPanel: {fileID: 67647183}
 --- !u!95 &6275532607227295648
 Animator:
   serializedVersion: 5
