@@ -55,7 +55,7 @@ public class PassedItemBar : MonoBehaviour
        for(int i = 0; i < itemCount - 1; i++)
         {
             GameObject item = Instantiate(passedItemObj, Vector3.zero, Quaternion.identity);
-            item.transform.parent = itemRoot;
+            item.transform.SetParent(itemRoot);
             item.transform.localScale = new Vector3(1, 1, 1);
             passedItemList.Add(item.GetComponent<Image>());
 
