@@ -11,7 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 9f86c0f282fdd40e7b1bb8a3db7d5fd6
-  - enabled: 0
-    path: Assets/Scenes/Chalennger.unity
-    guid: 01a9c8706f5629b42abf1429b955ee94
   m_configObjects: {}

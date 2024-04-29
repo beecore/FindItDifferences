@@ -1,45 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class HomeManager : MonoBehaviour
 {
     public GameObject settingPanel;
 
-    //public TextMeshProUGUI levelText;
-
-    void Start()
-    {
-       // levelText.text = "LEVEL " + (PlayerPrefs.GetInt("Level") + 1).ToString();
-    }
-
-
-    public void PlayGame()
+    private void PlayButtonClickSound()
     {
         AudioManager.instance.clickBtn.Play();
-        SceneManager.LoadScene("Game");
     }
-    public void PlayChalennger()
+
+    public void PlayGame(int type)
     {
-        AudioManager.instance.clickBtn.Play();
-        SceneManager.LoadScene("Chalennger");
+        PlayButtonClickSound();
+        GameConfig.typeGame = type;
+
+        string sceneName = (type == 0) ? "Game" : "Challenge";
+        SceneManager.LoadScene(sceneName);
     }
-    
+
+    public void ToggleSettingPanel(bool show)
+    {
+        PlayButtonClickSound();
+        settingPanel.SetActive(show);
+    }
+
     public void ShowSetting()
     {
-        AudioManager.instance.clickBtn.Play();
-        settingPanel.SetActive(true);
+        ToggleSettingPanel(true);
     }
+
     public void CloseSetting()
     {
-        AudioManager.instance.clickBtn.Play();
-        settingPanel.SetActive(false);
+        ToggleSettingPanel(false);
     }
+
     public void OnClickRateUs()
     {
-        AudioManager.instance.clickBtn.Play();
+        PlayButtonClickSound();
         Application.OpenURL("market://details?id=" + Application.identifier);
     }
 }

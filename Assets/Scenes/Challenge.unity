@@ -515,30 +515,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 66844463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b9bcdcf255977f48b9829d44a27fb97, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b9c55ee2ef365846a11ffb4a58d0f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pairItemLayer:
     serializedVersion: 2
-    m_Bits: 64
-  listQuestion:
-  - 'Look at 5 object '
-  listImage:
-  - {fileID: 208128298}
-  - {fileID: 783297351}
-  - {fileID: 1293894823}
-  - {fileID: 1578884278}
-  - {fileID: 1205655287}
-  textMesh: {fileID: 917509475280812555}
+    m_Bits: 0
   currentUnlockItem: 0
-  gameLevel: {fileID: 0}
-  currentLevelIndex: 0
-  mUIManager: {fileID: 1552483465}
-  missIconObject: {fileID: 6574585677673970451, guid: 12a7217c8994b44fc912feb98822185b, type: 3}
-  correctIconObject: {fileID: 1791144440866268333, guid: f5b542b1263442c7a35a4384ffbdc86c, type: 3}
-  maxLevelTotal: 1
-  hintObj: {fileID: 1808987725}
-  currentState: 0
+  correctIconObject: {fileID: 0}
+  foundItem: {fileID: 0}
 --- !u!1 &90748184
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,7 +752,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 66844465}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChalengerManager, Assembly-CSharp
         m_MethodName: ContinueGame
         m_Mode: 1
@@ -1344,7 +1329,7 @@ SpriteRenderer:
   m_Size: {x: 0.37, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &163182641
@@ -1846,7 +1831,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1784681148}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4963,7 +4948,7 @@ SpriteRenderer:
   m_Size: {x: 0.37, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &613893191
@@ -5123,7 +5108,7 @@ SpriteRenderer:
   m_Size: {x: 0.37, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &667932219
@@ -7114,7 +7099,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 66844465}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChalengerManager, Assembly-CSharp
         m_MethodName: Replay
         m_Mode: 1
@@ -9118,7 +9103,7 @@ SpriteRenderer:
   m_Size: {x: 0.37, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1183286987
@@ -10243,7 +10228,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 66844465}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChalengerManager, Assembly-CSharp
         m_MethodName: Replay
         m_Mode: 1
@@ -10832,7 +10817,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 66844465}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChalengerManager, Assembly-CSharp
         m_MethodName: ShowHint
         m_Mode: 1
@@ -11450,7 +11435,7 @@ SpriteRenderer:
   m_Size: {x: 0.37, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1499888657
@@ -12145,7 +12130,7 @@ SpriteRenderer:
   m_Size: {x: 0.37, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1569482476
@@ -14294,7 +14279,7 @@ SpriteRenderer:
   m_Size: {x: 0.37, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1906816658
@@ -15893,7 +15878,7 @@ SpriteRenderer:
   m_Size: {x: 0.37, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2115916733
